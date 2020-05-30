@@ -18,7 +18,6 @@ import com.example.demo.service.PersonService;
 @RequestMapping("/person")
 @RestController
 @CrossOrigin
-
 public class PersonController {
 	//@RequestMapping(value = "/", method = RequestMethod.GET, headers = "Accept=application/json")
 	
@@ -35,6 +34,14 @@ public class PersonController {
 		return ps.getall();
 	}
 	
+	@CrossOrigin
+	@GetMapping("/get/{username}")
+	public Person getPerson(@PathVariable String username){
+		return ps.getPerson(username);
+	}
+	
+	
+	 
 	
 	@PostMapping("/post")
 	public void addPerson(@RequestBody Person person) {

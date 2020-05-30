@@ -33,5 +33,9 @@ public class PersonService {
 	}
 	
 	
+	public Person getPerson(String username) {
+		return personrepo.findByUsername(username);
+	}
+	
 	
 }
