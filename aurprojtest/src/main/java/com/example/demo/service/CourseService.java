@@ -29,6 +29,10 @@ public class CourseService {
 		courserepo.findById(id).map( crs->{
 			crs.setCreator(course.getCreator());
 			crs.setDescription(course.getDescription());
+			crs.setPrerequisite(course.getPrerequisite());
+			crs.setSkill(course.getSkill());
+			crs.setlastupdated(course.getlastupdated());
+			
 			return courserepo.save(crs);
 		})
 		.orElseGet(()->{
