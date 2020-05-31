@@ -54,6 +54,7 @@ public class MaterialController {
 	 }
 	 
 	 
+	 @CrossOrigin
 	 @GetMapping("/get/{id}")
 	 public List<Materialversion> getVersion( @PathVariable Long id){
 		 return materialservice.getVersions(id);

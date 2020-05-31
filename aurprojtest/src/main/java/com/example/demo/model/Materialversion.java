@@ -15,14 +15,23 @@ public class Materialversion {
 	private Long id;
 	private String name;
 	private Long material;
+	private String creator;
+	public String getCreator() {
+		return creator;
+	}
+	public void setCreator(String creator) {
+		this.creator = creator;
+	}
+
 	@UpdateTimestamp
 	private Date lastupdated;
-	public Materialversion(Long id, String name, Long material, Date lastupdated) {
+	public Materialversion(Long id, String name, Long material, String creator , Date lastupdated) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.material = material;
 		this.lastupdated = lastupdated;
+		this.creator = creator;
 	}
 	public Long getId() {
 		return id;

@@ -17,14 +17,27 @@ public class Material {
 	@UpdateTimestamp
 	private Date lastupdated;
 	
+	private String creator;
+	
+	public String getCreator() {
+		return creator;
+	}
+
+
+	public void setCreator(String creator) {
+		this.creator = creator;
+	}
+
+
 	Material(){}
 	
 	
-	public Material(Long id, String name, Date lastupdated) {
+	public Material(Long id, String name, Date lastupdated , String creator) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.lastupdated = lastupdated;
+		this.creator = creator;
 	}
 	public Long getId() {
 		return id;

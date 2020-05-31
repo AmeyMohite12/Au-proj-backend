@@ -5,7 +5,9 @@ import com.example.demo.dao.MaterialversionRepo;
 import com.example.demo.model.Material;
 import com.example.demo.model.Materialversion;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,7 +34,7 @@ public class MaterialService {
 		Material temp;
 		Materialversion temp1;
 		temp = materialrepo.save(material);
-		temp1 = new Materialversion( null , temp.getName() , temp.getId() , null );
+		temp1 = new Materialversion( null , temp.getName() , temp.getId() , temp.getCreator(),null );
 		materialversionrepo.save(temp1);
 	}
 	
@@ -55,7 +57,12 @@ public class MaterialService {
 	}
 	
 	public List<Materialversion> getVersions(Long id){
-		return materialversionrepo.findByMaterial(id);
+		
+		List<Materialversion> lt;
+
+		lt = materialversionrepo.findByMaterial(id);
+		
+		return lt;
 	}
 	
 	
@@ -63,12 +70,12 @@ public class MaterialService {
 		materialrepo.findById(id).map( crs->{
 			crs.setName(material.getName());
 			crs.setlastupdated(material.getlastupdated());
-			
+			crs.setCreator(material.getCreator());
 			Material temp;
 			Materialversion temp1;
 			
 			temp= materialrepo.save(crs);
-			temp1 = new Materialversion( temp.getId() , temp.getName() , temp.getId() ,null );
+			temp1 = new Materialversion( temp.getId() , temp.getName() , temp.getId() , temp.getCreator(),null );
 			materialversionrepo.save(temp1);
 			return temp;
 		})
@@ -78,7 +85,7 @@ public class MaterialService {
 			Materialversion temp1;
 			
 			temp= materialrepo.save(material);
-			temp1 = new Materialversion( temp.getId() , temp.getName() , temp.getId() ,null );
+			temp1 = new Materialversion( temp.getId() , temp.getName() , temp.getId(),temp.getCreator() ,null );
 			materialversionrepo.save(temp1);
 			return temp;
 		});
