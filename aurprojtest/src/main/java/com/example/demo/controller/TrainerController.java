@@ -41,7 +41,7 @@ public class TrainerController {
 		return trainerserivce.getTrainerById(id);
 	}
 	
-	@PostMapping("/put/{id}")
+	@PostMapping("/update/{id}")
 	public void updateTrainer( @RequestBody Trainer trainer ,@PathVariable Long id ) {
 		trainerserivce.updateTrainer(trainer, id);
 	}
