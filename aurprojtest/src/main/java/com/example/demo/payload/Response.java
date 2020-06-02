@@ -1,7 +1,7 @@
 package com.example.demo.payload;
 
 public class Response {
-	  private String fileName;
+	    private String fileName;
 	    private String fileDownloadUri;
 	    private String fileType;
 	    private long size;
