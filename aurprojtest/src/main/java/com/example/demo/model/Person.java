@@ -13,18 +13,30 @@ public class Person {
 	private int id;
 	private String username;
 	private String password;
+	private String firstName;
+	
+	
 	
 	public Person() {}
 	
-	public Person(int id, String username, String password) {
+	public Person(int id, String username, String password , String firstName) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
+		this.firstName = firstName;
 	}
 	
 	
 	
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
 	public int getId() {
 		return id;
 	}

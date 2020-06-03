@@ -64,9 +64,14 @@ public class TrainerCourseController {
 		return trainer;
 		
 	}
-	
+	@CrossOrigin
 	@PostMapping("/post/{tid}/{cid}")
 	public void assignCourseToTrainer(@PathVariable("tid") Long tid , @PathVariable("cid") Long cid) {
+		
+		if(cr.findById(cid) == null) {
+			return ;
+		}
+		
 		TrainerCourse obj = new TrainerCourse(null , cid,tid);
 		tcrp.save(obj);
 	}

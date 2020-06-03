@@ -5,11 +5,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.CourseRepo;
+import com.example.demo.dao.TrainerCourseRepo;
 import com.example.demo.model.Course;
+import com.example.demo.model.TrainerCourse;
 
 @Service
 public class CourseService {
 	private CourseRepo courserepo;
+	
+	@Autowired
+	private TrainerCourseRepo trainercourserepo;
 	
 	@Autowired
 	public CourseService(CourseRepo courserepo){
@@ -43,6 +48,14 @@ public class CourseService {
 	
 	public void deleteCourse(Long id) {
 		courserepo.deleteById(id);
+		/// remove all entries from trainer course
+		List<TrainerCourse> temp = trainercourserepo.findByCourseid(id);
+		
+		for(TrainerCourse t1 : temp) {
+			trainercourserepo.deleteById(t1.getId());
+		}
+		
+		
 	}
 	
 }
