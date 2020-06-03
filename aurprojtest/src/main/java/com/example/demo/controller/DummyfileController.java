@@ -47,7 +47,7 @@ public class DummyfileController {
 		 	ResponseData rd = new ResponseData(  fileName.getId() ,  fileName.getFileName(), fileDownloadUri,
 	                file.getContentType(), file.getSize() , null,  creator,description);		 	
 		 System.out.println(rd);
-		 	 resdataservice.add(rd);
+		 	 resdataservice.add(rd,  file);
 	
 	
 	
@@ -77,7 +77,7 @@ public class DummyfileController {
 		 ResponseData rd = new ResponseData(  fileName.getId() ,  fileName.getFileName(), fileDownloadUri,
 	                file.getContentType(), file.getSize() , null,  creator,description);		
 			
-		 resdataservice.update(rd, rid);
+		 resdataservice.update(rd, rid , file);
 	}
 	
 	

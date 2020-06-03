@@ -1,19 +1,15 @@
 package com.example.demo.service;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.example.demo.dao.DummyfileRepo;
-import com.example.demo.dao.ResponseDataRepo;
 import com.example.demo.model.Dummyfile;
-import com.example.demo.payload.Response;
 
 
 @Service
@@ -53,9 +49,6 @@ public class DummyfileService {
 			f.setFileType(file.getContentType());
 			Dummyfile dummytemp =  dummyfilerepo.save(f);
 			
-			
-			
-				
 			return dummytemp;
 		
 		}).orElseGet(()->{
