@@ -52,9 +52,13 @@ public class CourseServiceTest {
 	public void addCourse() {
         Date d = new Date();
 
-		Course course = new Course((long)1, "hello" ,"how" ,"are" , "you" , d);
+		Course course = new Course((long)1, "hello" ,"how" ,"are" , "you" , d);	
+		when(courserepo.save(course)).thenReturn(course);        
+
 		courseservice.addCourse(course);
-		verify(courserepo , times(1)).save(course);
+		courseservice.addCourse(course);
+		
+		verify(courserepo , times(2)).save(course);
 	}
 	
 //	

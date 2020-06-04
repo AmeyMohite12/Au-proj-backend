@@ -9,4 +9,6 @@ import com.example.demo.model.TrainerCourse;
 public interface TrainerCourseRepo extends CrudRepository<TrainerCourse,Long>{
 	public List<TrainerCourse> findByCourseid(Long courseid);
 	public List<TrainerCourse> findByTrainerid(Long trainerid);
+	
+	public boolean existsByCourseid(Long courseid);
 }

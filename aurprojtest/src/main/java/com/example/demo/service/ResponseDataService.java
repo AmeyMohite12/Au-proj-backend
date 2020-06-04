@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dao.DummyfileRepo;
+import com.example.demo.dao.DummyfileVersionRepo;
 import com.example.demo.dao.ResponseDataRepo;
 import com.example.demo.dao.ResponseDataVersionRepo;
 import com.example.demo.model.ResponseData;
@@ -26,6 +28,14 @@ public class ResponseDataService {
 	
 	@Autowired
 	ResponseDataVersionRepo resdataversionrepo;
+	
+	@Autowired
+	DummyfileRepo dummyfilerepo;
+	
+	
+	@Autowired
+	DummyfileVersionRepo dummyfileversionrepo;
+	
 	public void add(ResponseData rd , MultipartFile file) throws IOException {
 		System.out.println("In response data service "+rd);
 		
@@ -91,6 +101,18 @@ public class ResponseDataService {
 	}
 	
 	
-	
+	public void delete(Long id ) {
+		// delete from dummy file
+		///delete from res , resver and dummy file ver 
+		dummyfilerepo.deleteById(id);
+		resdatarepo.deleteById(id);
+		List<ResponseDataVersion> temp = resdataversionrepo.findByResponseid(id);
+		
+		for(ResponseDataVersion t : temp) {
+			resdataversionrepo.deleteById(t.getId());
+			dummyfileversionrepo.deleteById(t.getId());
+		}
+		
+	}
 	
 }

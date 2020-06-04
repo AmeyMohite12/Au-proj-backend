@@ -20,7 +20,9 @@ import com.example.demo.dao.TrainerCourseRepo;
 import com.example.demo.dao.TrainerRepo;
 import com.example.demo.model.Trainer;
 import com.example.demo.model.TrainerCourse;
+import com.example.demo.model.Trend;
 import com.example.demo.service.CourseService;
+import com.example.demo.service.TrainerCourseService;
 import com.example.demo.service.TrainerService;
 
 import com.example.demo.model.Course;
@@ -35,9 +37,19 @@ public class TrainerCourseController {
 	@Autowired
 	private TrainerRepo tr;
 	
+	@Autowired
+	private TrainerCourseService trainercourseservice;
+	
 	/// since no service make repo here
 	@Autowired
 	private TrainerCourseRepo tcrp;
+	
+	
+	@GetMapping("/trainer_course_count")
+	public List<Trend> getCourseTrainerMapping(){
+		return  trainercourseservice.getCourseData();
+	}
+	
 	
 	
 	@GetMapping("/trainer/get/{tid}")
@@ -77,8 +89,5 @@ public class TrainerCourseController {
 		}
 		System.out.println("No object created");
 		return null;
-		
-		
-		
 	}
 }
