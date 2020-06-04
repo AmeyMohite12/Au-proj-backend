@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -66,13 +67,18 @@ public class TrainerCourseController {
 	}
 	@CrossOrigin
 	@PostMapping("/post/{tid}/{cid}")
-	public void assignCourseToTrainer(@PathVariable("tid") Long tid , @PathVariable("cid") Long cid) {
+	public TrainerCourse assignCourseToTrainer(@PathVariable("tid") Long tid , @PathVariable("cid") Long cid) {
 		
-		if(cr.findById(cid) == null) {
-			return ;
+		boolean flg = cr.existsById(cid);
+		if(flg) {
+			
+			TrainerCourse obj = new TrainerCourse(null , cid,tid);
+			return tcrp.save(obj);
 		}
+		System.out.println("No object created");
+		return null;
 		
-		TrainerCourse obj = new TrainerCourse(null , cid,tid);
-		tcrp.save(obj);
+		
+		
 	}
 }
