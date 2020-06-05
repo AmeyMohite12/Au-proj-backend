@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.dao.CourseRepo;
 import com.example.demo.dao.TrainerCourseRepo;
 import com.example.demo.model.Course;
+import com.example.demo.model.TrainerCourse;
 import com.example.demo.model.Trend;
 
 @Service
@@ -38,6 +39,24 @@ public class TrainerCourseService {
 		return temp1;
 	}
 	
+	
+	public void unAssignTrainer(Long tid , Long cid) {
+		
+		List<TrainerCourse> temp = trainercourserepo.findByTrainerid(tid);
+	    Long var;
+		for(TrainerCourse t : temp) {
+			
+			var = t.getCourseid();
+			if(var.equals(cid)) {
+				
+				trainercourserepo.deleteById(t.getId());
+				break;
+
+			}
+			
+			
+		}
+	}
 	
 	
 }

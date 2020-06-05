@@ -87,7 +87,15 @@ public class TrainerCourseController {
 			TrainerCourse obj = new TrainerCourse(null , cid,tid);
 			return tcrp.save(obj);
 		}
-		System.out.println("No object created");
+		//System.out.println("No object created");
 		return null;
 	}
+	
+	@DeleteMapping("/delete/{tid}/{cid}")
+	public void unAssignTrainer(@PathVariable("tid") Long tid , @PathVariable("cid") Long cid ) {
+		trainercourseservice.unAssignTrainer(tid, cid);
+	}
+	
+	
+	
 }
