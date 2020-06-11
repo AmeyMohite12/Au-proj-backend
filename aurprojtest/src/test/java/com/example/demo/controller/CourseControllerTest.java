@@ -2,8 +2,10 @@ package com.example.demo.controller;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.ArrayList;
@@ -46,10 +48,10 @@ class CourseControllerTest {
 	CourseService courseservice;
 	
 	
-	@Before
+	@Before 
 	public void init() {
         MockitoAnnotations.initMocks(this);
-        
+         
         Date d = new Date();
 		Course course = new Course((long)1, "hello" ,"how" ,"are" , "you" , d); 
 		Course course2 = new Course((long)1, "nope" ,"how" ,"are" , "you" , d);        
@@ -67,7 +69,7 @@ class CourseControllerTest {
 	public void getCoursesTest() throws Exception {
 		mockMvc.perform(get("/course/get")).andExpect(status().isOk());
 	}
-	
+	  
 	@Test
 	public void addCourseTest() throws Exception{
 		Date d = new Date();
@@ -79,6 +81,20 @@ class CourseControllerTest {
 	}
 	
 	
+	@Test
+	public void updateCourseTest() throws Exception {
+		Date d = new Date();
+		Course course = new Course((long)1, "hello" ,"how" ,"are" , "you" , d); 
+		mockMvc.perform(put("/course/update/1").content(asJsonString(course)).contentType(MediaType.APPLICATION_JSON)
+				.accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andReturn();
+	}
+	
+	@Test
+	public void deleteCourseTest() throws Exception {
+		mockMvc.perform( delete("/course/delete/1")).andExpect(status().isOk());
+	}
 	
 
 }
