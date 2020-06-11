@@ -91,15 +91,11 @@ public class ResponseDataService {
 			return resdatarepo.save(rd);
 		});
 		
-		
-		
-		
 	}
 	
 	public List<ResponseDataVersion> getVersions(Long id){
 		return resdataversionrepo.findByResponseid(id);
 	}
-	
 	
 	public void delete(Long id ) {
 		// delete from dummy file
@@ -112,7 +108,5 @@ public class ResponseDataService {
 			resdataversionrepo.deleteById(t.getId());
 			dummyfileversionrepo.deleteById(t.getId());
 		}
-		
 	}
-	
 }

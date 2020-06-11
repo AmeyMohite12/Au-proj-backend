@@ -62,6 +62,11 @@ public class Course {
 		return id;
 	}
 	
+	public void setid(Long id) {
+		this.id = id;
+	}
+	
+	
 	public Course(Long id, String description, String creator, String skill, String prerequisite, Date lastupdated) {
 		super();
 		this.id = id;
