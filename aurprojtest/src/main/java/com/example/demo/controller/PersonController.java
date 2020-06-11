@@ -48,7 +48,7 @@ public class PersonController {
 		ps.addPerson(person);
 	}
 	
-	
+	 
 	@DeleteMapping("/delete/{id}")
 	public void deletePerson(@PathVariable("id") int id) {
 		ps.deletePerson(id);

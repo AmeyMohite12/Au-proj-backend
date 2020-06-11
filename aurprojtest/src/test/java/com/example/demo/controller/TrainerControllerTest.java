@@ -45,17 +45,14 @@ class TrainerControllerTest {
 		temp.add(train1);
 		
 		when(trainerservice.getTrainers()).thenReturn(temp);
-	}
+	}  
 	
 	
 	@Test
 	public void getAllTrainersTest() throws Exception{
-		
 		mockMvc.perform(get("/trainer/get")).andDo(print()).andExpect(status().isOk());
-		
-		
-		
 	}
+	
 	
 	
 	

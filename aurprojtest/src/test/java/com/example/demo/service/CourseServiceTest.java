@@ -13,7 +13,8 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
- 
+import java.util.Optional;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -56,32 +57,84 @@ public class CourseServiceTest {
 		when(courserepo.save(course)).thenReturn(course);        
 
 		courseservice.addCourse(course);
-		courseservice.addCourse(course);
+		courseservice.addCourse(course); 
 		
-		verify(courserepo , times(2)).save(course);
+	} 
+	
+	@Test
+	public void deleteCourse() {
+        MockitoAnnotations.initMocks(this);
+
+		Long id = (long) 1;
+		
+		
+		List<TrainerCourse> lt = new ArrayList<TrainerCourse>();
+		TrainerCourse temp = new TrainerCourse((long)1,(long)2,(long)3      );
+		lt.add(temp);
+		temp = new TrainerCourse((long)2,(long)3,(long)4      );
+		lt.add(temp);
+		when(trainercourserepo.findByCourseid(id)).thenReturn(lt);
+		
+		courseservice.deleteCourse(id);
+		
 	}
 	
-//	
-//	@Test
-//	public void deleteCourseTest() {
-//		
-//		List<TrainerCourse> temp = new ArrayList<TrainerCourse>();
-// 		TrainerCourse ct1 = new TrainerCourse( (long) 1, (long)2, (long)3);
-// 		TrainerCourse ct2 = new TrainerCourse( (long) 2, (long)2, (long)4);
-//        Date d = new Date();
-//        temp.add(ct1);
-//        temp.add(ct2);
-//		Course course = new Course((long)1, "hello" ,"how" ,"are" , "you" , d);
-// 		
-//		
-//	//	when(((OngoingStubbing< List<TrainerCourse> >) trainercourserepo.findByCourseid((long)1)).thenReturn(temp));
-//		
-//		
-//		courseservice.deleteCourse((long)1);
-//		
-//		
-// 		verify(courserepo,times(1)).deleteById((long) 1);
-// 		
-//	}
+	
+	@Test
+	public void getCourses() {
+        MockitoAnnotations.initMocks(this);
+        
+        List<Course> temp = new ArrayList<Course>();
+        Date d = new Date();
+        temp.add(  
+		 new Course((long)1, "hello" ,"how" ,"are" , "you" , d));
+        temp.add(  
+       		 new Course((long)2, "hello" ,"how" ,"are" , "you" , d));
+        
+        
+        when( courserepo.findAll()).thenReturn(temp);
+        courseservice.getCourses();
+		
+	}
+	
+	
+	@Test
+	public void updateCoursewithNonNull() {
+        MockitoAnnotations.initMocks(this);
+
+		Optional<Course> course; Long id;
+		Date d = new Date();
+		course = Optional.of(new Course((long)1, "hello" ,"how" ,"are" , "you" , d));
+		id = (long) 1;
+		
+		
+		when(courserepo.findById(id)).thenReturn(course);
+		when( courserepo.save(course.get()) ).thenReturn(course.get());
+		
+		courseservice.updateCourse(course.get(), id);
+		
+		
+	}
+	
+	@Test
+	public void updateCoursewithNull() {
+        MockitoAnnotations.initMocks(this);
+
+		Optional<Course> course; Long id;
+		Date d = new Date();
+		course = Optional.of(new Course((long)1, "hello" ,"how" ,"are" , "you" , d));
+		id = (long) 1;
+		
+		
+		when(courserepo.findById(id)).thenReturn(Optional.empty());
+		when( courserepo.save(course.get()) ).thenReturn(course.get());
+		
+		courseservice.updateCourse(course.get(), id);
+
+		
+		
+	}
+	
+	
 
 }

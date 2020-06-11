@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -89,6 +90,11 @@ public class PersonControllerTest {
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andReturn();
+	}
+	
+	@Test
+	public void deletePersonTest() throws Exception {
+		mockMvc.perform(delete("/person/delete/1")).andExpect(status().isOk());
 	}
 	
 	

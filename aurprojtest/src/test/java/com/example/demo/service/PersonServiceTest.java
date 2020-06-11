@@ -37,9 +37,12 @@ public class PersonServiceTest {
 			parray.add(p1);
 			parray.add(p2);
 			
+			
+			
 			when(personrepo.findAll()).thenReturn(parray);
 			when(personrepo.findByUsername("hello")).thenReturn(p1);
 		
+			
 			
 	 }
 	
@@ -59,6 +62,11 @@ public class PersonServiceTest {
 		
 		Person p  = personservice.getPerson("hello");
 		assertEquals(p.getUsername() , "hello");
+		
+		 Person p1 = new Person(1,"hello","world","hi");
+		 when(personrepo.save(p1)).thenReturn(p1);
+		 personservice.addPerson(p1);
+		 
 	}
 	
 	@Test

@@ -80,7 +80,7 @@ public class TrainerCourseServiceTest {
 		}
 		verify(trainercourserepo,times(1)).deleteById((long)2);
 		assertEquals(temp.size(),2);
-		
+		tcs.unAssignTrainer( tid , cid);
 		
 	
 		
@@ -106,6 +106,8 @@ public class TrainerCourseServiceTest {
 				}
 			}
 			assertEquals( temp1.size() , 2);
+			tcs.getCourseData();
+			
 	}
 	
 }
