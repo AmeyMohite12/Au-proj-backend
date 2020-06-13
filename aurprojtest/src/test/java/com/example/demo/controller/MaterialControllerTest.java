@@ -40,7 +40,7 @@ class MaterialControllerTest {
 	        throw new RuntimeException(e);
 	    }
 	}
-	
+	 
 	@MockBean
 	MaterialService ms;
 	
@@ -52,7 +52,7 @@ class MaterialControllerTest {
         MockitoAnnotations.initMocks(this);
         
     }
-	
+	 
 	
 	@Test
 	public void addCourseTest() throws Exception {

@@ -58,5 +58,17 @@ public class TrainerCourseService {
 		}
 	}
 	
+	public boolean getCoursesOfTrainer(Long tid , Long cid){
+		
+		List<TrainerCourse> trp;
+		trp=  trainercourserepo.findByTrainerid(tid);
+		for(TrainerCourse temp : trp) {
+			if(temp.getCourseid().equals(cid)) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	
 }

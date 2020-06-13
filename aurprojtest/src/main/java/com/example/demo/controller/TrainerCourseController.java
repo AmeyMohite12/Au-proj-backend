@@ -84,7 +84,15 @@ public class TrainerCourseController {
 		boolean flg = cr.existsById(cid);
 		if(flg) {
 			
+			if(!trainercourseservice.getCoursesOfTrainer(tid, cid)) {
+				System.out.println("This course already exists");
+				return new TrainerCourse(null , (long)-1,(long)-1);
+			}
 			TrainerCourse obj = new TrainerCourse(null , cid,tid);
+		
+			
+			
+			
 			return tcrp.save(obj);
 		}
 		//System.out.println("No object created");

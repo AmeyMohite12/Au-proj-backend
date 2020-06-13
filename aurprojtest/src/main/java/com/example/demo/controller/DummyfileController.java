@@ -49,10 +49,6 @@ public class DummyfileController {
 	                file.getContentType(), file.getSize() , null,  creator,description);		 	
 		 System.out.println(rd);
 		 	 resdataservice.add(rd,  file);
-	
-	
-	
-	
 	}
 	
 	
@@ -65,7 +61,6 @@ public class DummyfileController {
 		
 		 dummyfileservice.updateFile(file, rid);
 
-		 
 		 Dummyfile fileName = dummyfileservice.getFile(rid);
 		 
 		 
@@ -77,17 +72,13 @@ public class DummyfileController {
 		 
 		 ResponseData rd = new ResponseData(  fileName.getId() ,  fileName.getFileName(), fileDownloadUri,
 	                file.getContentType(), file.getSize() , null,  creator,description);		
-			
 		 resdataservice.update(rd, rid , file);
 	}
-	
-	
 	
 	@GetMapping("/getall")
 	public List<ResponseData> getAllFiles(){
 		return resdataservice.getall();
 	} 
-	
 	
 	
 	@GetMapping("/get/{id}")
@@ -96,12 +87,9 @@ public class DummyfileController {
 	
 	} 
 	
-	
 	@DeleteMapping("/delete/{id}")
 	public void delelteFile(@PathVariable Long id) {
 		resdataservice.delete(id);
 	}
-	
-	
 
 }
